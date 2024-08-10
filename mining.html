@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Mining - Bitfishcoin - a speculative online game currency</title>
+		<meta name="description" content="Bitfishcoin is a speculative online game currency that can generate passive income for people.">
+		<link rel="icon" type="image/png" href="logo.png">
+		<link href="favicon.png" rel="shortcut icon" type="image/png">
+		<link rel="stylesheet" href="main.css">
+		<!-- <script type="text/javascript">function Mining(){var div0=document.getElementById("div0");var div1=document.getElementById("div1");var div2=document.getElementById("div2");var div3=document.getElementById("div3");var div4=document.getElementById("div4");div0.style.display='none';div1.style.display='block';div2.style.display='none';div3.style.display='none';div4.style.display='none'}function Smartnodes(){var div0=document.getElementById("div0");var div1=document.getElementById("div1");var div2=document.getElementById("div2");var div3=document.getElementById("div3");var div4=document.getElementById("div4");div0.style.display='none';div1.style.display='none';div2.style.display='block';div3.style.display='none';div4.style.display='none'}function Roadmap(){var div0=document.getElementById("div0");var div1=document.getElementById("div1");var div2=document.getElementById("div2");var div3=document.getElementById("div3");var div4=document.getElementById("div4");div0.style.display='none';div1.style.display='none';div2.style.display='none';div3.style.display='block';div4.style.display='none'}function WhitePaper(){var div0=document.getElementById("div0");var div1=document.getElementById("div1");var div2=document.getElementById("div2");var div3=document.getElementById("div3");var div4=document.getElementById("div4");div0.style.display='none';div1.style.display='none';div2.style.display='none';div3.style.display='none';div4.style.display='block'}</script> -->
+	</head>
+	<body>
+		<header class="panel-cover">
+			<div class="main">
+				<div class="main_inner panel-inverted">
+					<div class="main_content">
+						<a href="./" class="blog-button"><img id="loading-img" src="logo.png" width="100" class="panel-cover_logo logo"></a>
+						<h1 class="panel-cover_title panel-title">B I T F I S H C O I N</h1>
+						<hr class="panel-cover_divider">
+						<div class="navigation-wrapper">
+							<nav class="cover-navigation cover-navigation--primary">
+								<ul class="navigation">
+									<li class="navigation_item"><a href="./index.html">Home</a></li>
+									<li class="navigation_item"><a href="https://github.com/Altcoin-Master/Bitfishcoin/releases" target="_blank">Wallet</a></li>
+									<li class="navigation_item"><a class="selected" href="./mining.html">Mining</a></li>
+									<li class="navigation_item"><a href="./smartnodes.html">Smartnodes</a></li>
+									<li class="navigation_item"><a href="./whitepaper.html">WhitePaper</a></li>
+									<li class="navigation_item"><a href="https://btscchain.taichicoin.org/" target="_blank">Explorer</a></li>
+								</ul>
+							</nav>
+						</div>
+						<div class="cover_bg">
+							<hr class="panel-cover_divider">
+							<span>Mining Revenue Calculator</span><br><br>
+							<table>
+								<tr>
+								<td><span>Your Hashrate&nbsp</span></td>
+								<td><input type="number" id="num1" value="1">&nbsp KH/s<br><br></td>
+								</tr>
+								</tr>
+								<tr>
+								<td><span>Network Hashrate&nbsp</span></td>
+								<td><input type="number" id="num2" value="100">&nbsp KH/s<br><br></td>
+								</tr>
+								<tr>
+								<td><span>Block Reward&nbsp</span></td>
+								<td>&nbsp<input type="number" id="num3" value="2500">&nbsp BTSC<br><br></td>
+								</tr>
+								<tr>
+								<td></td>
+								<td><button class="calculate" onclick="Calculate()">Calculate</button><br><br></td>
+								<tr>
+								<td><span>1 Days Income&nbsp</span></td>
+								<td>&nbsp<input type="number" id="numd" value="" readonly="true">&nbsp BTSC<br><br></td>
+								</tr>
+								<tr>
+								<td><span>30 Days Income&nbsp</span></td>
+								<td>&nbsp<input type="number" id="numm" value="" readonly="true">&nbsp BTSC<br><br></td>
+								</tr>
+							</table>
+							<hr class="panel-cover_divider">
+							<p class="psa">
+								At present, BTSC has 720 blocks per day, Miners get 45%, and the other 50% are allocated to smartnodes. Please refer to the white paper for specific rules.
+								<br><br>
+								● Algo: GhostRider
+								<br>- ASIC & FPGA resistant
+								<br><br>
+								● Mining Soft
+								<br>- <a href="https://github.com/xmrig/xmrig/releases" target="_blank">Xmrig</a>
+								<br>- <a href="https://github.com/andru-kun/wildrig-multi/releases" target="_blank">WildRig</a>
+								<br>- <a href="https://www.srbminer.com/download.html" target="_blank">Srbminer</a>
+								<br><br>
+								● Get your address: Click Receive - Request payment in the QT wallet to get your wallet address.
+								<br><br>
+								● Pools
+								<!-- <br>- Please join Discord to get -->
+								<br>- <a href="https://miningpoolstats.stream/bitfishcoin" target="_blank">https://miningpoolstats.stream/bitfishcoin</a>
+							</p>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<footer class="footer"><ul><li>Don't invest all your money in cryptocurrencies, especially altcoins and tokens!</li></ul></footer>
+    <script>
+		function exp(){		
+			fetch('https://btscchain.taichicoin.org/api/getnetworkhashps')
+				//.then(res => console.log(res))
+				.then(response => response.text())
+				.then(text => {
+				console.log(text);
+				hashps = parseInt(text / 1000);
+				document.getElementById("num2").value=hashps;
+				Calculate();
+				})
+				.catch(error => console.log(error));	
+		};
+		exp();
+		function Calculate(){
+			var YH = parseFloat(document.getElementById('num1').value);
+			var NH = parseFloat(document.getElementById('num2').value);
+			var BR = parseFloat(document.getElementById('num3').value);
+			var numd = (Math.round(BR*720/NH*YH)).toFixed(0);
+			var numm = (Math.round(BR*720/NH*YH*30)).toFixed(0);
+			//console.log(numd); 
+			document.getElementById("numd").value=numd;
+			document.getElementById("numm").value=numm;
+		};
+	</script>
+	</body>
+</html>
